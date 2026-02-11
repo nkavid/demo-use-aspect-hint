@@ -1,0 +1,16 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+load("@aspect_rules_lint//lint:clang_tidy.bzl", "create_clang_tidy_hint")
+
+cc_library(
+  name = "my_lib",
+  srcs = ["foo.cpp", "bar.cpp", "foo.hpp", "bar.hpp"],
+  aspect_hints = [create_clang_tidy_hint(target_name = "my_lib", skip_files = ["bar.hpp"])]
+)
+
+cc_test(
+  name = "test_my_lib",
+  srcs = ["test_foo.cpp"],
+  deps = [":my_lib", "@catch2//:catch2_main"],
+)
+
+

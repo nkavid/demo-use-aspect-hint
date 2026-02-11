@@ -1,0 +1,12 @@
+load("@bazel_skylib//rules:native_binary.bzl", "native_binary")
+
+native_binary(
+    name = "clang_tidy",
+    src = "@llvm_toolchain_llvm//:clang-tidy",
+    out = "clang_tidy",
+)
+
+filegroup(
+    name = "clang_tidy_config",
+    srcs = ["clang_tidy.toml"]
+)
