@@ -1,0 +1,3 @@
+[submodule "thirdparty/rules_lint"]
+	path = thirdparty/rules_lint
+	url = git@github.com:nkavid/rules_lint.git
