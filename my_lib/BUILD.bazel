@@ -4,7 +4,13 @@ load("@aspect_rules_lint//lint:clang_tidy.bzl", "create_clang_tidy_hint")
 cc_library(
   name = "my_lib",
   srcs = ["foo.cpp", "bar.cpp", "foo.hpp", "bar.hpp"],
-  aspect_hints = [create_clang_tidy_hint(target_name = "my_lib", skip_files = ["bar.hpp"])]
+  aspect_hints = [
+    create_clang_tidy_hint(
+        target_name = "my_lib",
+        skip_files = ["bar.cpp"]
+    ),
+    "//tools/lint:ignore_headers"
+  ]
 )
 
 cc_test(

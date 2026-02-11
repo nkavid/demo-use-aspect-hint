@@ -1,4 +1,5 @@
 load("@bazel_skylib//rules:native_binary.bzl", "native_binary")
+load("@aspect_rules_lint//lint:clang_tidy.bzl", "clang_tidy_hint")
 
 native_binary(
     name = "clang_tidy",
@@ -9,4 +10,10 @@ native_binary(
 filegroup(
     name = "clang_tidy_config",
     srcs = ["clang_tidy.toml"]
+)
+
+clang_tidy_hint(
+    name = "ignore_headers",
+    command_line_args = ["--header-filter="],
+    visibility = ["//visibility:public"]
 )
